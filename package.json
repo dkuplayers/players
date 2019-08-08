@@ -1,0 +1,19 @@
+{
+  "name": "players",
+  "version": "1.0.0",
+  "description": "Sport matching service using nodejs",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkuplayers/players.git"
+  },
+  "author": "DKU-Player",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dkuplayers/players/issues"
+  },
+  "homepage": "https://github.com/dkuplayers/players#readme"
+}
