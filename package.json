@@ -1,19 +1,33 @@
 {
-  "name": "players",
-  "version": "1.0.0",
-  "description": "Sport matching service using nodejs",
-  "main": "init.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dkuplayers/players.git"
-  },
-  "author": "DKU-Player",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dkuplayers/players/issues"
-  },
-  "homepage": "https://github.com/dkuplayers/players#readme"
+    "name": "players",
+    "version": "1.0.0",
+    "description": "Sport matching service using nodejs",
+    "main": "init.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon --exec babel-node init.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dkuplayers/players.git"
+    },
+    "author": "DKU-Player",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dkuplayers/players/issues"
+    },
+    "homepage": "https://github.com/dkuplayers/players#readme",
+    "dependencies": {
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.4",
+        "express": "^4.17.1",
+        "helmet": "^3.20.0",
+        "morgan": "^1.9.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
 }
