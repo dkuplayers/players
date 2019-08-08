@@ -1,6 +1,15 @@
 header.header
     .header__column
+        a(href=routes.home)
+            i.fas.fa-running
     .header__column
         ul
             li
-                a(href=)
+                a(href=routes.join) Join
+            li
+                a(href=routes.login) Login
+            li
+                a(href=routes.logout) Logout
+            li
+                a(href=`/users${routes.userDetail}`)
+                    i.fas.fa-user-alt
