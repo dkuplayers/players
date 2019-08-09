@@ -12,7 +12,7 @@ import { onlyPrivate } from "../middleware";
 
 const recruitRouter = express.Router();
 
-recruitRouter.get(routes.recruit, onlyPrivate, recruit);
+recruitRouter.get(routes.home, onlyPrivate, recruit);
 recruitRouter.get(routes.uploadRecruit, onlyPrivate, uploadRecruit);
 recruitRouter.get(routes.editRecruit, onlyPrivate, editRecruit);
 recruitRouter.get(routes.deleteRecruit, onlyPrivate, deleteRecruit);

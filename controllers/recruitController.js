@@ -1,13 +1,13 @@
 import Post from "../models/Post";
+import routes from "../routes";
 
 export const search = (req, res) => {
     res.render("search");
 };
 
-export const recruit = (req, res) => {
-    const post = Post.find();
-    console.log(post);
-    res.render("recruit");
+export const recruit = async (req, res) => {
+    const recruits = await Post.find();
+    res.render("recruit", { recruits });
 };
 
 export const uploadRecruit = (req, res) => {
@@ -27,6 +27,7 @@ export const postRecruit = async (req, res) => {
         description
     });
     recruit.save();
+    res.redirect(routes.recruit);
 };
 
 export const editRecruit = (req, res) => {
