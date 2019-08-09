@@ -1,5 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
+import User from "../models/User";
 
 export const home = (req, res) => {
     res.render("home");
@@ -11,7 +12,22 @@ export const postJoin = async (req, res, next) => {
     const {
         body: { name, email, password1, password2, location }
     } = req;
-    console.log(name, email, password1, password2, location);
+    if (password1 !== password2) {
+        req.flash("error", "Password doesn't match");
+        res.render("join");
+    } else {
+        try {
+            const user = await User({
+                name,
+                email
+            });
+            await User.register(user, password1);
+            next();
+        } catch (error) {
+            console.log(error);
+            res.redirect(routes.home);
+        }
+    }
 };
 export const getLogin = (req, res) => {
     res.render("login");
@@ -23,7 +39,9 @@ export const postLogin = passport.authenticate("local", {
     failureFlash: "Can't log in. Check email and/or password"
 });
 export const logout = (req, res) => {
-    res.render("logout");
+    req.flash("info", "Log out");
+    req.logout();
+    res.redirect(routes.home);
 };
 export const userDetail = (req, res) => {
     res.render("userDetail");

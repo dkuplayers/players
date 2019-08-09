@@ -4,6 +4,9 @@ import "./db";
 
 dotenv.config();
 
+import "./models/User";
+import "./models/Post";
+
 const PORT = process.env.PORT || 4000;
 
 const handleListening = () => {

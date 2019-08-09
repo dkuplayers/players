@@ -7,8 +7,10 @@ import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import session from "express-session";
+import flash from "express-flash";
 import routes from "./routes";
 import dotenv from "dotenv";
+import "./passport";
 
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
@@ -35,6 +37,7 @@ app.use(
         store: new CookieStore({ mongooseConnection: mongoose.connection })
     })
 );
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());

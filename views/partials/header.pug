@@ -4,12 +4,14 @@ header.header
             i.fas.fa-running
     .header__column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) Login
-            li
-                a(href=routes.logout) Logout
-            li
-                a(href=`/users${routes.userDetail}`)
-                    i.fas.fa-user-alt
+            if !loggedUser
+                li
+                    a(href=routes.join) Join
+                li
+                    a(href=routes.login) Login
+            else
+                li
+                    a(href=routes.logout) Logout
+                li
+                    a(href=`/users${routes.userDetail}`)
+                        i.fas.fa-user-alt
