@@ -24,7 +24,8 @@ export const postRecruit = async (req, res) => {
         playTime,
         location,
         recruitNum,
-        description
+        description,
+        creator: req.user.id
     });
     recruit.save();
     res.redirect(routes.recruit);
@@ -35,7 +36,10 @@ export const recruitDetail = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const post = await Post.findById(id);
+        const post = await Post.findById(id)
+            .populate("posts")
+            .populate("volunteer");
+        console.log(post);
         res.render("recruitDetail", { post });
     } catch (error) {
         console.log(error);
@@ -86,14 +90,36 @@ export const deleteRecruit = async (req, res) => {
     }
 };
 
-export const volunteer = (req, res) => {
+export const volunteer = async (req, res) => {
     const {
         params: { id }
     } = req;
+    try {
+        await Post.findByIdAndUpdate(id, {
+            volunteers: req.user.id
+        });
+        res.redirect(routes.recruitDetail(id));
+    } catch (error) {
+        console.log(error);
+        res.redirect(routes.home);
+    }
 };
 
-export const cancelVolunteer = (req, res) => {
+export const cancelVolunteer = async (req, res) => {
     const {
         params: { id }
     } = req;
+    try {
+        await Post.findByIdAndUpdate(
+            id,
+            {
+                $pull: { volunteers: req.user.id }
+            },
+            { safe: true, upsert: true }
+        );
+        res.redirect(routes.recruitDetail(id));
+    } catch (error) {
+        console.log(error);
+        res.redirect(routes.home);
+    }
 };
