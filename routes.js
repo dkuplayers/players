@@ -1,3 +1,5 @@
+import { recruitDetail } from "./controllers/recruitController";
+
 //Global
 
 const HOME = "/";
@@ -20,6 +22,8 @@ const RECRUIT_DETAIL = "/:id";
 const EDIT_RECRUIT = "/:id/edit-recruit";
 const DELETE_RECRUIT = "/:id/delete-recruit";
 const UPLOAD_RECRUIT = "/upload-recruit";
+const VOLUNTEER_RECRUIT = "/:id/volunteer-recruit";
+const CANCEL_VOLUNTEER = "/:id/cancel-volunteer";
 
 const routes = {
     home: HOME,
@@ -44,10 +48,42 @@ const routes = {
     },
     changePassword: CHANGE_PASSWORD,
     recruit: RECRUIT,
-    recruitDetail: RECRUIT_DETAIL,
-    editRecruit: EDIT_RECRUIT,
-    deleteRecruit: DELETE_RECRUIT,
-    uploadRecruit: UPLOAD_RECRUIT
+    recruitDetail: id => {
+        if (id) {
+            return `/recruit/${id}`;
+        } else {
+            return RECRUIT_DETAIL;
+        }
+    },
+    editRecruit: id => {
+        if (id) {
+            return `/recruit/${id}/edit-recruit`;
+        } else {
+            return EDIT_RECRUIT;
+        }
+    },
+    deleteRecruit: id => {
+        if (id) {
+            return `/recruit/${id}/delete-recruit`;
+        } else {
+            return DELETE_RECRUIT;
+        }
+    },
+    uploadRecruit: UPLOAD_RECRUIT,
+    volunteer: id => {
+        if (id) {
+            return `/recruit/${id}/volunteer-recruit`;
+        } else {
+            return VOLUNTEER_RECRUIT;
+        }
+    },
+    cancelVolunteer: id => {
+        if (id) {
+            return `/recruit/${id}/cancel-volunteer`;
+        } else {
+            return CANCEL_VOLUNTEER;
+        }
+    }
 };
 
 export default routes;

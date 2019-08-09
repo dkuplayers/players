@@ -3,7 +3,7 @@ extends layouts/main
 block content
     .recruits
         each recruit in recruits
-            a.recruit_container(href=`recruit${routes.recruitDetail}`)
+            a.recruit_container(href=routes.recruitDetail(recruit.id))
                 h1=recruit.title
                 h3=recruit.playTime
                 h3=recruit.location

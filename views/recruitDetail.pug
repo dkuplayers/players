@@ -1,0 +1,24 @@
+extends layouts/main
+
+block content
+    .post__container
+        .info__container
+            h1=post.title
+            h3=post.createdAt
+            h3=post.playTime
+            h3=post.location
+        .map__container
+        p=post.description
+        
+        if String(loggedUser._id) === String(post.creator)
+            button.button--edit
+                a(href=routes.editRecruit(post.id)) Edit Recruit
+            button.button--delete    
+                a(href=routes.deleteRecruit(post.id)) Delete Recruit
+        else if post.volunteers.find(me => String(me) === String(loggedUser._id))
+            button.button--cancel
+                a(href=routes.cancelVolunteer(post.id)) Cancel 
+        else
+            button.button--volunteer
+                a(href=routes.volunteer(post.id)) Volunteer
+            

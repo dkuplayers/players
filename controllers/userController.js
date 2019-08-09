@@ -10,9 +10,9 @@ export const getJoin = (req, res) => {
 };
 export const postJoin = async (req, res, next) => {
     const {
-        body: { name, email, password1, password2, location }
+        body: { name, email, password, password2, location }
     } = req;
-    if (password1 !== password2) {
+    if (password !== password2) {
         req.flash("error", "Password doesn't match");
         res.render("join");
     } else {
@@ -21,7 +21,7 @@ export const postJoin = async (req, res, next) => {
                 name,
                 email
             });
-            await User.register(user, password1);
+            await User.register(user, password);
             next();
         } catch (error) {
             console.log(error);
