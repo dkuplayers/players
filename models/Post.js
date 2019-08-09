@@ -10,7 +10,7 @@ const PostSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    platTime: {
+    playTime: {
         type: String,
         required: "Playtime is required"
     },
@@ -23,7 +23,7 @@ const PostSchema = new mongoose.Schema({
         required: "Recruit Number is required"
     },
     currentRecruitL: {
-        type: Numver,
+        type: Number,
         default: 0
     },
     creator: {
