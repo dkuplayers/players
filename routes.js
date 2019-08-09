@@ -41,8 +41,20 @@ const routes = {
             return RECRUIT_DETAIL;
         }
     },
-    editRecruit: EDIT_RECRUIT,
-    deleteRecruit: DELETE_RECRUIT,
+    editRecruit: id => {
+        if (id) {
+            return `/recruit/${id}/edit-recruit`;
+        } else {
+            return EDIT_RECRUIT;
+        }
+    },
+    deleteRecruit: id => {
+        if (id) {
+            return `/recruit/${id}/delete-recruit`;
+        } else {
+            return DELETE_RECRUIT;
+        }
+    },
     uploadRecruit: UPLOAD_RECRUIT
 };
 

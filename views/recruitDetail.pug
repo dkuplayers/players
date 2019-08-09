@@ -10,6 +10,11 @@ block content
         .map__container
         p=post.description
         
-            
+        if loggedUser
+            button.button--edit
+                a(href=routes.editRecruit(post.id)) Edit Recruit
+            button.button--delete    
+                a(href=routes.deleteRecruit(post.id)) Delete Recruit
+        
             
 

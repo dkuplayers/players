@@ -49,20 +49,39 @@ export const getEditRecruit = async (req, res) => {
     } = req;
     try {
         const post = await Post.findById(id);
-        if (String(post.creator) !== req.user.id) {
-            throw Error();
-        } else {
-            res.render("editRecruit", { post });
-        }
+        res.render("editRecruit", { post });
     } catch (error) {
         res.redirect(routes.home);
     }
-
-    res.render("editRecruit");
 };
 
-export const postEditRecruit = (req, res) => {};
+export const postEditRecruit = async (req, res) => {
+    const {
+        body: { title, playTime, location, recruitNum, description },
+        params: { id }
+    } = req;
+    try {
+        await Post.findByIdAndUpdate(id, {
+            title,
+            playTime,
+            location,
+            recruitNum,
+            description
+        });
+        res.redirect(routes.recruitDetail(id));
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+};
 
-export const deleteRecruit = (req, res) => {
-    res.render("deleteRecruit");
+export const deleteRecruit = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    try {
+        await Post.findOneAndRemove({ _id: id });
+        res.redirect(routes.home);
+    } catch (error) {
+        res.redirect(routes.home);
+    }
 };
