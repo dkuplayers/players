@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-mongoose.connect("mongodb://127.0.0.1:27017/players", {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useFindAndModify: false
 });
