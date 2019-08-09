@@ -30,14 +30,39 @@ export const postRecruit = async (req, res) => {
     res.redirect(routes.recruit);
 };
 
-export const editRecruit = (req, res) => {
+export const recruitDetail = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    try {
+        const post = await Post.findById(id);
+        res.render("recruitDetail", { post });
+    } catch (error) {
+        console.log(error);
+        res.redirect(routes.home);
+    }
+};
+
+export const getEditRecruit = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    try {
+        const post = await Post.findById(id);
+        if (String(post.creator) !== req.user.id) {
+            throw Error();
+        } else {
+            res.render("editRecruit", { post });
+        }
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+
     res.render("editRecruit");
 };
 
+export const postEditRecruit = (req, res) => {};
+
 export const deleteRecruit = (req, res) => {
     res.render("deleteRecruit");
-};
-
-export const recruitDetail = (req, res) => {
-    res.render("recruitDetail");
 };

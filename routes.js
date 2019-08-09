@@ -1,3 +1,5 @@
+import { recruitDetail } from "./controllers/recruitController";
+
 //Global
 
 const HOME = "/";
@@ -32,7 +34,13 @@ const routes = {
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
     recruit: RECRUIT,
-    recruitDetail: RECRUIT_DETAIL,
+    recruitDetail: id => {
+        if (id) {
+            return `/recruit/${id}`;
+        } else {
+            return RECRUIT_DETAIL;
+        }
+    },
     editRecruit: EDIT_RECRUIT,
     deleteRecruit: DELETE_RECRUIT,
     uploadRecruit: UPLOAD_RECRUIT
