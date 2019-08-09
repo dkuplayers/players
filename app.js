@@ -32,7 +32,7 @@ app.use(
         secret: process.env.COOKIE_SECRET,
         resave: true,
         saveUninitialized: false,
-        store: new CokieStore({ mongooseConnection: mongoose.connection })
+        store: new CookieStore({ mongooseConnection: mongoose.connection })
     })
 );
 
