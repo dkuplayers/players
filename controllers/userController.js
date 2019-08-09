@@ -43,12 +43,22 @@ export const logout = (req, res) => {
     req.logout();
     res.redirect(routes.home);
 };
-export const userDetail = (req, res) => {
-    res.render("userDetail");
+export const userDetail = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    const current_user = await User.findById(id);
+    res.render("userDetail", { current_user });
 };
-export const editProfile = (req, res) => {
-    res.render("editProfile");
+export const editProfile = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    const current_user = await User.findById(id);
+    console.log(current_user);
+    res.render("editProfile", { current_user });
 };
+export const updateProfile = () => {};
 export const changePassword = (req, res) => {
     res.render("changePassword");
 };

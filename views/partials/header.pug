@@ -13,5 +13,5 @@ header.header
                 li
                     a(href=routes.logout) Logout
                 li
-                    a(href=`/users${routes.userDetail}`)
+                    a(href=routes.userDetail(loggedUser.id))
                         i.fas.fa-user-alt

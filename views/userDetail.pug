@@ -1,0 +1,6 @@
+extends layouts/main
+
+block content
+    h1=current_user.name
+    h3=current_user.email
+    a(href=routes.editProfile(loggedUser.id)) 프로필 수정하기

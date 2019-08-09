@@ -10,7 +10,7 @@ const SEARCH = "/search";
 
 const USERS = "/users";
 const USER_DETAIL = "/:id";
-const EDIT_PROFILE = "/edit-profile";
+const EDIT_PROFILE = "/:id/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
 //Recruit
@@ -28,8 +28,20 @@ const routes = {
     logout: LOGOUT,
     search: SEARCH,
     users: USERS,
-    userDetail: USER_DETAIL,
-    editProfile: EDIT_PROFILE,
+    userDetail: id => {
+        if (id) {
+            return `/users/${id}`;
+        } else {
+            return USER_DETAIL;
+        }
+    },
+    editProfile: id => {
+        if (id) {
+            return `/users/${id}/edit-profile`;
+        } else {
+            return EDIT_PROFILE;
+        }
+    },
     changePassword: CHANGE_PASSWORD,
     recruit: RECRUIT,
     recruitDetail: RECRUIT_DETAIL,
