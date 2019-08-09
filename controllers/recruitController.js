@@ -5,6 +5,8 @@ export const search = (req, res) => {
 };
 
 export const recruit = (req, res) => {
+    const post = Post.find();
+    console.log(post);
     res.render("recruit");
 };
 
