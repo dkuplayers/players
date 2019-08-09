@@ -22,6 +22,8 @@ const RECRUIT_DETAIL = "/:id";
 const EDIT_RECRUIT = "/:id/edit-recruit";
 const DELETE_RECRUIT = "/:id/delete-recruit";
 const UPLOAD_RECRUIT = "/upload-recruit";
+const VOLUNTEER_RECRUIT = "/:id/volunteer-recruit";
+const CANCEL_VOLUNTEER = "/:id/cancel-volunteer";
 
 const routes = {
     home: HOME,
@@ -55,7 +57,21 @@ const routes = {
             return DELETE_RECRUIT;
         }
     },
-    uploadRecruit: UPLOAD_RECRUIT
+    uploadRecruit: UPLOAD_RECRUIT,
+    volunteer: id => {
+        if (id) {
+            return `/recruit/${id}/volunteer-recruit`;
+        } else {
+            return VOLUNTEER_RECRUIT;
+        }
+    },
+    cancelVolunteer: id => {
+        if (id) {
+            return `/recruit/${id}/cancel-volunteer`;
+        } else {
+            return CANCEL_VOLUNTEER;
+        }
+    }
 };
 
 export default routes;

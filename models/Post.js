@@ -22,14 +22,20 @@ const PostSchema = new mongoose.Schema({
         type: Number,
         required: "Recruit Number is required"
     },
-    currentRecruitL: {
+    currentRecruit: {
         type: Number,
         default: 0
     },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    volunteers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ]
 });
 
 const model = mongoose.model("Post", PostSchema);

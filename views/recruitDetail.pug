@@ -10,11 +10,15 @@ block content
         .map__container
         p=post.description
         
-        if loggedUser
+        if loggedUser.id === post.creator
             button.button--edit
                 a(href=routes.editRecruit(post.id)) Edit Recruit
             button.button--delete    
                 a(href=routes.deleteRecruit(post.id)) Delete Recruit
-        
-            
+        else if loggedUser.voluteer !== post.id && null
+            button.button--volunteer
+                a(href=routes.volunteer(post.id)) Volunteer
+        else
+            button.button--cancel
+                a(href=routes.cancelVolunteer(post.id)) Cancel
 

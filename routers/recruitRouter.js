@@ -7,7 +7,9 @@ import {
     recruitDetail,
     postRecruit,
     postEditRecruit,
-    getEditRecruit
+    getEditRecruit,
+    volunteer,
+    cancelVolunteer
 } from "../controllers/recruitController";
 import { onlyPrivate } from "../middleware";
 
@@ -24,5 +26,8 @@ recruitRouter.post(routes.editRecruit(), onlyPrivate, postEditRecruit);
 recruitRouter.get(routes.deleteRecruit(), onlyPrivate, deleteRecruit);
 
 recruitRouter.get(routes.recruitDetail(), onlyPrivate, recruitDetail);
+
+recruitRouter.get(routes.volunteer(), onlyPrivate, volunteer);
+recruitRouter.get(routes.cancelVolunteer(), onlyPrivate, cancelVolunteer);
 
 export default recruitRouter;

@@ -85,3 +85,15 @@ export const deleteRecruit = async (req, res) => {
         res.redirect(routes.home);
     }
 };
+
+export const volunteer = (req, res) => {
+    const {
+        params: { id }
+    } = req;
+};
+
+export const cancelVolunteer = (req, res) => {
+    const {
+        params: { id }
+    } = req;
+};
