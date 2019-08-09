@@ -11,7 +11,7 @@ import {
 
 const recruitRouter = express.Router();
 
-recruitRouter.get(routes.recruit, recruit);
+recruitRouter.get(routes.home, recruit);
 recruitRouter.get(routes.uploadRecruit, uploadRecruit);
 recruitRouter.get(routes.editRecruit, editRecruit);
 recruitRouter.get(routes.deleteRecruit, deleteRecruit);
