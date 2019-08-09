@@ -1,4 +1,5 @@
 import Post from "../models/Post";
+import routes from "../routes";
 
 export const search = (req, res) => {
     res.render("search");
