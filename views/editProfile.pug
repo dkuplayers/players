@@ -2,10 +2,10 @@ extends layouts/main
 
 block content
     .from__container
-        form(action=routes.editProfile, method="put")
-            input(type="text", name="name", placeholder="Full Name", value=current_user.name)
-            input(type="email", name="email", placeholder="E-Mail", value=currnet_user.email)
-            input(type="password" name="password1" placeholder="Password")
-            input(type="password" name="password2" placeholder="Verify Password")
+        form(action=routes.editProfile(loggedUser.id), method="post")
+            input(type="text", name="name", placeholder="Full Name", value=loggedUser.name)
+            input(type="email", name="email", placeholder="E-Mail", value=loggedUser.email)
+            input(type="password" name="password1" placeholder="Old Password")
+            input(type="password" name="password2" placeholder="New Password")
             input(type="text", name="location", placeholder="Location")
             input(type="submit", value="Edit")

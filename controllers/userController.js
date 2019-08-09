@@ -58,7 +58,33 @@ export const editProfile = async (req, res) => {
     console.log(current_user);
     res.render("editProfile", { current_user });
 };
-export const updateProfile = () => {};
+export const updateProfile = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    const {
+        body: { name, email, password1, password2 }
+    } = req;
+    if (password1 !== password2) {
+        req.flash("error", "Password doesn't match");
+        res.render("editProfile");
+    } else {
+        try {
+            await User.findByIdAndUpdate(id, {
+                name,
+                email
+            });
+            const newPass = await User.findById(id);
+            newPass.setPassword(password1, () => {
+                newPass.save();
+            });
+            redirect(routes.home);
+        } catch (error) {
+            console.log(error);
+            res.redirect(routes.home);
+        }
+    }
+};
 export const changePassword = (req, res) => {
     res.render("changePassword");
 };
