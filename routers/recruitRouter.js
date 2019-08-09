@@ -8,14 +8,15 @@ import {
     recruitDetail,
     postRecruit
 } from "../controllers/recruitController";
+import { onlyPrivate } from "../middleware";
 
 const recruitRouter = express.Router();
 
-recruitRouter.get(routes.recruit, recruit);
-recruitRouter.get(routes.uploadRecruit, uploadRecruit);
-recruitRouter.get(routes.editRecruit, editRecruit);
-recruitRouter.get(routes.deleteRecruit, deleteRecruit);
-recruitRouter.get(routes.recruitDetail, recruitDetail);
+recruitRouter.get(routes.recruit, onlyPrivate, recruit);
+recruitRouter.get(routes.uploadRecruit, onlyPrivate, uploadRecruit);
+recruitRouter.get(routes.editRecruit, onlyPrivate, editRecruit);
+recruitRouter.get(routes.deleteRecruit, onlyPrivate, deleteRecruit);
+recruitRouter.get(routes.recruitDetail, onlyPrivate, recruitDetail);
 
 recruitRouter.post(routes.uploadRecruit, postRecruit);
 
