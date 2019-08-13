@@ -95,10 +95,16 @@ export const volunteer = async (req, res) => {
         params: { id }
     } = req;
     try {
-        await Post.findByIdAndUpdate(id, {
-            volunteers: req.user.id
-        });
-        res.redirect(routes.recruitDetail(id));
+        const post = await Post.findById(id);
+        if (post.recruitNum !== post.volunteers.length) {
+            await Post.findByIdAndUpdate(id, {
+                volunteers: req.user.id
+            });
+            res.redirect(routes.recruitDetail(id));
+        } else {
+            req.flash("error", "there is no empty space");
+            res.redirect(routes.recruitDetail(id));
+        }
     } catch (error) {
         console.log(error);
         res.redirect(routes.home);
