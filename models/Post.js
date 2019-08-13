@@ -14,10 +14,8 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "Playtime is required"
     },
-    location: {
-        type: String,
-        required: "Location is required"
-    },
+    latitude: Number,
+    longitude: Number,
     recruitNum: {
         type: Number,
         required: "Recruit Number is required"

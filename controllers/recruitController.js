@@ -15,14 +15,16 @@ export const uploadRecruit = (req, res) => {
 };
 
 export const postRecruit = async (req, res) => {
-    console.log(req);
     const {
         body: { title, playTime, location, recruitNum, description }
     } = req;
+    const parsedLocation = JSON.parse(location);
+    const { Ga: latitude, Ha: longitude } = parsedLocation;
     const recruit = await Post.create({
         title,
         playTime,
-        location,
+        latitude,
+        longitude,
         recruitNum,
         description,
         creator: req.user.id
