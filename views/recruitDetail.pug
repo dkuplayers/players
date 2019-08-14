@@ -7,7 +7,6 @@ block content
             h3=post.createdAt
             h3=post.playTime
             h3=post.location
-        .map__container
         p=post.description
         
         if String(loggedUser._id) === String(post.creator)
