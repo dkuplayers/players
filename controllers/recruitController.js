@@ -6,7 +6,7 @@ export const search = (req, res) => {
 };
 
 export const recruit = async (req, res) => {
-    const recruits = await Post.find();
+    const recruits = await Post.find({}).sort({ createdAt: -1 });
     res.render("recruit", { recruits });
 };
 
