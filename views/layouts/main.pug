@@ -5,6 +5,7 @@ html
     head
         title #{pageTitle}
         script(src="https://kit.fontawesome.com/cf7d6be083.js")
+        script(src=`//dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_API}&libraries=services`)
     body
         if messages.error
             +message({

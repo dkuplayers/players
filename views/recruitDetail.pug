@@ -6,7 +6,10 @@ block content
             h1=post.title
             h3=post.createdAt
             h3=post.playTime
-            h3=post.location
+            input(type="hidden", id="latitude" value=post.latitude)
+            input(type="hidden", id="longitude" value=post.longitude)
+        .map__container(style="width:500px;height:400px;")
+            #map(style="width:500px;height:400px;")
         p=post.description
         
         if String(loggedUser._id) === String(post.creator)
@@ -20,4 +23,5 @@ block content
         else
             button.button--volunteer
                 a(href=routes.volunteer(post.id)) Volunteer
-            
+        h3 #{post.volunteers.length} / #{post.recruitNum}
+        script(src="/script/recruitDetailMap.js")

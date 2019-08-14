@@ -15,14 +15,16 @@ export const uploadRecruit = (req, res) => {
 };
 
 export const postRecruit = async (req, res) => {
-    console.log(req);
     const {
         body: { title, playTime, location, recruitNum, description }
     } = req;
+    const parsedLocation = JSON.parse(location);
+    const { Ga: latitude, Ha: longitude } = parsedLocation;
     const recruit = await Post.create({
         title,
         playTime,
-        location,
+        latitude,
+        longitude,
         recruitNum,
         description,
         creator: req.user.id
@@ -95,10 +97,16 @@ export const volunteer = async (req, res) => {
         params: { id }
     } = req;
     try {
-        await Post.findByIdAndUpdate(id, {
-            volunteers: req.user.id
-        });
-        res.redirect(routes.recruitDetail(id));
+        const post = await Post.findById(id);
+        if (post.recruitNum !== post.volunteers.length) {
+            await Post.findByIdAndUpdate(id, {
+                volunteers: req.user.id
+            });
+            res.redirect(routes.recruitDetail(id));
+        } else {
+            req.flash("error", "there is no empty space");
+            res.redirect(routes.recruitDetail(id));
+        }
     } catch (error) {
         console.log(error);
         res.redirect(routes.home);
