@@ -63,14 +63,15 @@ export const getEditRecruit = async (req, res) => {
 
 export const postEditRecruit = async (req, res) => {
     const {
-        body: { title, playTime, location, recruitNum, description },
+        body: { title, playTime, latitude, longitude, recruitNum, description },
         params: { id }
     } = req;
     try {
         await Post.findByIdAndUpdate(id, {
             title,
             playTime,
-            location,
+            latitude,
+            longitude,
             recruitNum,
             description
         });
