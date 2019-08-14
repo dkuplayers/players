@@ -15,12 +15,14 @@ if (navigator.geolocation) {
         var locPosition = new kakao.maps.LatLng(lat, lon);
 
         displayMarker(locPosition);
+        locationInput.value = JSON.stringify(locPosition);
     });
 } else {
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
         message = "geolocation을 사용할수 없어요..";
 
     displayMarker(locPosition, message);
+    locationInput.value = JSON.stringify(locPosition);
 }
 
 function displayMarker(locPosition) {
